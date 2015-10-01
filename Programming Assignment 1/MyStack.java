@@ -7,57 +7,40 @@ import java.util.NoSuchElementException;
 * It uses generic data types to handle different data types.
 */
 public class MyStack<E> {
-  private E[] stack;
+  private MyLinkedList<E> stack;
   private int size;
 
-  /*
-  * Constructor for a MyStack object
-  */
-  public MyStack() {
-    stack = (E[]) new Object[10];
-    size = 0;
-  }
-
-  //O(1)
-  /*
-  *
-  */
-  public void push(E item) {
-    if (size() == stack.length - 1)
-      increaseSize();
-
-    size++;
-    stack[size] = item;
-  }
-
-  public E pop() throws NoSuchElementException{
-    if(empty())
-      throw new NoSuchElementException("Cannot pop from empty stack");
-    else {
-      size--;
-      return stack[size + 1];
+    /*
+    * Constructor for a MyStack object
+    */
+    public MyStack() {
+      stack = new MyLinkedList<E>();
+      size = 0;
     }
-  }
 
-  //O(1)
-  public Boolean empty() {
-    return (size == 0);
-  }
 
-  //O(1)
-  public E top() {
-    return stack[size - 1];
-  }
+    public boolean empty(){	//O(1)
+        return size == 0;
+    }
 
-  //O(1)
-  public int size() {
-    return size;
-  }
+    public void push(E item) {
+      size++;
+      stack.insert(item);
+    }
 
-  public void increaseSize() {
-    E[] stack2 = (E[]) new Object[stack.length * 2];
-    System.arraycopy(stack, 0, stack2, 0, stack.length);
+    public E pop() throws NoSuchElementException{
+      if(empty())
+        throw new NoSuchElementException("Cannot pop from empty stack");
+      else
+        size--;
+        return stack.deleteLast();
+    }
 
-    stack = stack2;
-  }
+    public int size(){	//O(1)
+        return size;
+    }
+
+    public void clear(){    //O(1)
+        stack.clear();
+    }
 }

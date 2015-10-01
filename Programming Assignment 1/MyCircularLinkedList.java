@@ -1,12 +1,12 @@
 import java.util.NoSuchElementException;
 
-public class MyLinkedList<E> {
+public class MyCircularLinkedList<E> {
   private MyNode head;
   private MyNode tail;
   private MyNode current;
   private int size;
 
-  public MyLinkedList() {
+  public MyCircularLinkedList() {
     head = null;
     tail = null;
     size = 0;
@@ -29,6 +29,7 @@ public class MyLinkedList<E> {
       tail = newNode;
     }
 
+    tail.setNext(head);
     size++;
   }
 
@@ -37,6 +38,7 @@ public class MyLinkedList<E> {
       MyNode<E> firstNode = head;
       head = head.getNext();
       current = current.getNext();
+      tail.setNext(head);
       return firstNode.getValue();
     } else {
       System.out.println("List is empty!");
@@ -56,11 +58,13 @@ public class MyLinkedList<E> {
         tail = current;
         current.setNext(null);
         current = head;
+        tail.setNext(head);
       } else {
         lastNode = current;
         tail = null;
         head = null;
         current = null;
+        tail.setNext(head);
       };
 
       size--;
@@ -78,5 +82,29 @@ public class MyLinkedList<E> {
       tail = null;
       head = null;
       current = null;
+  }
+
+  public MyNode getHead() {
+    return head;
+  }
+
+  public void shiftNodeTo(int n) {
+    
+  }
+
+  public void print() {
+    current = head;
+    for (int i = 0; i < 6; i++) {
+          System.out.println(current.getValue()+", ");
+          current=current.getNext();
+    }
+  }
+
+  public static void main(String[] args) {
+    MyCircularLinkedList<Integer> test = new MyCircularLinkedList<Integer>();
+    test.insert(1);
+    test.insert(2);
+    test.insert(3);
+    test.print();
   }
 }

@@ -1,12 +1,69 @@
 /*
 */
 public class MyNode<E> {
-  public E data1;
-  public double data2;
-  public Node pointer;
+  private E value;
+  public MyNode next;
 
-  public Link(int d1, double d2) {
-    data1 = d1;
-    data2 = d2;
+  public MyNode(E value) {
+    this.value = value;
+    next = null;
+  }
+
+  public MyNode() {
+    value = null;
+    next = null;
+  }
+
+  public void setNext(MyNode n) {
+    next = n;
+  }
+
+  public void setValue(E value) {
+    this.value = value;
+  };
+
+  public MyNode<E> getNext() {
+    return next;
+  }
+
+  public E getValue() {
+    return value;
   }
 }
+
+// /**
+//  * Created by Seth on 9/30/2015.
+//  */
+// public class MyNode<E> {
+//     public MyNode next;
+//     public E data;
+//
+//     public MyNode(){
+//         this(null);
+//     }
+//
+//     public MyNode(E data){
+//         next = null;
+//         this.data=data;
+//     }
+//
+//     public E getData(){
+//         return this.data;
+//     }
+//
+//     public MyNode getNext(){
+//         return this.next;
+//     }
+//
+//     public void setData(E data){
+//         this.data=data;
+//     }
+//
+//     public void setNext(MyNode next){
+//         this.next=next;
+//     }
+//
+//     public String toString(){
+//         return ""+data;
+//     }
+// }

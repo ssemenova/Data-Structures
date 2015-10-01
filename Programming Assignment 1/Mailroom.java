@@ -64,7 +64,7 @@ public class Mailroom {
   }
 
   public static double remainder(MyQueue<Integer> queue, int time) {
-    int sum = 0;
+    double sum = 0;
 
     while (!queue.empty()) {
       sum += time - queue.dequeue();
