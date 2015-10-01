@@ -88,23 +88,33 @@ public class MyCircularLinkedList<E> {
     return head;
   }
 
-  public void shiftNodeTo(int n) {
-    
+  public E shiftNodeTo(int n) {
+    if (n < 0)
+      n = size + n;
+
+    for (int i = 0; i < n; i++)
+      current = current.getNext();
+
+    E valueAtCurrent = (E) current.getValue();
+
+    return valueAtCurrent;
   }
 
-  public void print() {
+  public void setValueOfCurrent(E value) {
+    current.setValue(value);
+  }
+
+  public String toString() {
     current = head;
-    for (int i = 0; i < 6; i++) {
-          System.out.println(current.getValue()+", ");
-          current=current.getNext();
-    }
-  }
 
-  public static void main(String[] args) {
-    MyCircularLinkedList<Integer> test = new MyCircularLinkedList<Integer>();
-    test.insert(1);
-    test.insert(2);
-    test.insert(3);
-    test.print();
+    String s = "[";
+
+    while (current != tail) {
+        s += current.getValue() + ", ";
+        current = current.getNext();
+    }
+    s += current.getValue();
+    current = head;
+    return s + "]";
   }
 }
